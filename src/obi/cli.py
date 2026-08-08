@@ -292,6 +292,9 @@ def import_templates(template_name, term_file):
     template = Template(path)
 
     labels = util.get_labels()
+    if len(labels) == 0:
+        print("ERROR: no term labels found")
+        exit(1)
     new_terms = util.read_term_table(term_file)
     found, missing = template.import_found(labels, new_terms)
     if found:

@@ -131,6 +131,7 @@ class Template:
         try to find and import a new term
         """
         found, missing = self.match(labels, new_terms)
-        for label, id in found.items():
-            import_term(id, label)
+        for label, term_id in found.items():
+            ontology_id = util.get_ontology_id(term_id)
+            import_term(ontology_id, term_id, label)
         return found, missing

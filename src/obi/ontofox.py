@@ -117,9 +117,8 @@ class Ontofox:
                 self.sources.append(line)
             elif section == "lower":
                 term = Term(line)
-                if term.iri in self.terms:
-                    raise Exception(f"Duplicate lower term: {line}")
-                self.add(Term(line))
+                if term.iri not in self.terms:
+                    self.add(Term(line))
             elif section == "upper":
                 if line.startswith("subClassOf"):
                     parent = Term(line.replace("subClassOf", ""))
